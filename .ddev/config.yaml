@@ -1,0 +1,34 @@
+name: ikhfad-sporton-fe
+docroot: ""
+type: generic
+webserver_type: generic
+nodejs_version: "24"
+corepack_enable: true
+default_container_timeout: "240"
+use_dns_when_possible: true
+additional_hostnames: []
+additional_fqdns: []
+web_environment: []
+performance_mode: mutagen
+disable_upload_dirs_warning: true
+
+# Map the Next.js port (3000) to the standard DDEV URL
+web_extra_exposed_ports:
+    - name: nextjs
+      container_port: 3000
+      http_port: 80
+      https_port: 443
+
+# Start the Next.js server automatically in the background
+web_extra_daemons:
+    - name: "nextjs"
+      command: "pnpm dev -H 0.0.0.0"
+      directory: "/var/www/html"
+
+# Keep this settings as is for now, weird thing happen if this deleted
+php_version: "8.5"
+xdebug_enabled: false
+database:
+    type: mariadb
+    version: "10.11"
+composer_version: "2"
