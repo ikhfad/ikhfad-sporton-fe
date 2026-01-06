@@ -75,7 +75,7 @@ const ProductsSection = () => {
                                 height={300}
                                 className="aspect-square object-contain"
                             />
-                            <Button className="w-10 h-10 p-2! absolute right-3 top-3 ">
+                            <Button className="w-10 h-10 p-2! absolute right-3 top-3 " variant={"primary"} size={"small"}>
                                 <FiPlus size={24} />
                             </Button>
                         </div>
