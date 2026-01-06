@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ikhfad Sporton Frontend
 
-## Getting Started
+A modern web application built with **Next.js 16** and **React 19**, designed for high performance and a seamless developer experience.
 
-First, run the development server:
+## 🚀 Development Environment
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is developed and optimized using [DDEV](https://ddev.com/), a Docker-based local development tool. Using DDEV ensures a consistent environment across different machines and handles SSL, networking, and performance optimizations (like Mutagen) automatically.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop/)
+- [DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Getting Started with DDEV
+1.  **Start the environment:**
+    ```powershell
+    ddev start
+    ```
+2.  **Install dependencies:**
+    ```powershell
+    ddev pnpm install
+    ```
+3.  **Run the development server:**
+    The server starts automatically via a background daemon. You can access it at:
+    `https://ikhfad-sporton-fe.ddev.site`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4.  **View Logs:**
+    To see the Next.js output, use:
+    ```powershell
+    ddev logs -f
+    ```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Manual Installation (Without DDEV)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you prefer to run the project natively on your host machine, ensure you have **Node.js 20+** and **pnpm** installed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Install dependencies:**
+    ```bash
+    pnpm install
+    ```
+2.  **Run development server:**
+    ```bash
+    pnpm dev
+    ```
+3.  **Open the app:**
+    Navigate to `http://localhost:3000`.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Tech Stack & Dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Core
+* **Next.js (v16.1.1):** React framework for production.
+* **React (v19.2.3):** For building the user interface.
+* **TypeScript:** For type-safe development.
+
+### UI & Styling
+* **Tailwind CSS (v4):** A utility-first CSS framework.
+* **React Icons:** High-quality icons for the UI.
+* **React Toastify:** Elegant notifications and alerts.
+
+### Development Tools
+* **ESLint:** Pluggable linting utility for JavaScript/TypeScript.
+* **PostCSS:** Tool for transforming CSS with JavaScript.
+
+---
+
+## 📂 Project Structure
+* `app/`: Contains the Next.js App Router, pages, and layouts.
+* `public/`: Static assets like images and fonts.
+* `.ddev/`: Local environment configuration and custom commands.
+
+---
+
+## 📝 Commit Convention
+This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+- `feat:` New features
+- `fix:` Bug fixes
+- `build:` Changes to dependencies or build system
+- `chore:` Maintenance tasks
+- `refactor:` Code changes that neither fix bugs nor add features
