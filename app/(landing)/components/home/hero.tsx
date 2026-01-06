@@ -44,6 +44,8 @@ const HeroSection = () => {
                     height={950}
                     alt="image sporton hero"
                     className="absolute -right-5 top-1/2 -translate-y-1/2"
+                    fetchPriority="high"
+                    loading="eager"
                 />
             </div>
             <Image

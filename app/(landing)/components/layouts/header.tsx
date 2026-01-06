@@ -12,6 +12,7 @@ const Header = () => {
           width={127}
           height={30}
           loading="eager"
+          fetchPriority="high"
         />
         <nav className="flex gap-44 font-medium">
           <Link
