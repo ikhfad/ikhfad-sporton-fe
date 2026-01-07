@@ -31,6 +31,23 @@ This project is developed and optimized using [DDEV](https://ddev.com/), a Docke
 
 ---
 
+## Windows Development Notes (Crucial)
+
+To ensure a smooth experience on Windows, especially when using **Mutagen** and **pnpm**, please follow these guidelines:
+
+### 1. Enable Developer Mode
+Windows requires **Developer Mode** to be active so that pnpm can create symbolic links on your host drive. Without this, Mutagen sync will fail with a "required privilege is not held" error.
+- Go to **Settings > System > For developers** and toggle **Developer Mode** to **On**.
+
+### 2. Managing node_modules
+To avoid sync conflicts, **always run package commands inside DDEV**.
+- **DO NOT** delete `node_modules` manually from Windows File Explorer while DDEV is running.
+- If you need a clean install, run:
+  ```powershell
+  ddev stop
+
+---
+
 ## 🛠 Manual Installation (Without DDEV)
 
 If you prefer to run the project natively on your host machine, ensure you have **Node.js 20+** and **pnpm** installed.
