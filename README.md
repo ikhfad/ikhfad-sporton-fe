@@ -97,3 +97,4 @@ This project follows the [Conventional Commits](https://www.conventionalcommits.
 - `build:` Changes to dependencies or build system
 - `chore:` Maintenance tasks
 - `refactor:` Code changes that neither fix bugs nor add features
+- `docs:` Documentation
