@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "./button";
 import { FiArrowRight, FiTrash2 } from "react-icons/fi";
 
-const cardList = [
+export const cardList = [
   {
     name: "SportsOn Slowlivin",
     category: "Running",
