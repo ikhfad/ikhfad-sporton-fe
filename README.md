@@ -102,47 +102,45 @@ If you prefer to run the project natively on your host machine, ensure you have 
 
 ## 📂 Project Structure
 
-├── .ddev/ # Docker-based local environment
-│ ├── commands/ # Custom bash scripts
+├── .ddev/ # Docker-based local development environment
+│ ├── commands/ # Custom project-specific bash commands
 │ │ └── web/ # Scripts running inside the container (e.g., next-clean)
-│ └── config.yaml # Main DDEV project configuration
+│ └── config.yaml # Main DDEV service and networking configuration
 ├── .next/ # Next.js build and development cache (Git ignored)
-├── app/ # Next.js 16 App Router (Source Code)
-│ ├── (landing)/ # Marketing/Public pages (grouped by parenthesis)
-│ │ ├── components/ # UI blocks specific to the landing page
+├── app/ # Next.js 16 App Router (Core Source Code)
+│ ├── (landing)/ # Main Landing Page Route Group
+│ │ ├── components/ # UI sections specific to the landing page
 │ │ │ ├── categories.tsx
 │ │ │ └── product-section.tsx
-│ │ └── page.tsx # Root landing page entry point
-│ ├── checkout/ # Checkout flow pages
-│ ├── order-status/ # Dynamic [id] routes for tracking
-│ ├── hooks/ # Custom React hooks (e.g., useCart, useAuth)
-│ ├── lib/ # Core logic and Third-party wrappers
-│ │ └── api.ts # Central fetchAPI utility with error handling
-│ ├── services/ # Pure data fetching (Separated from UI)
-│ │ ├── bank.service.ts # Bank data integration
-│ │ ├── category.service.ts
-│ │ └── product.service.ts
-│ ├── store/ # State management (Zustand)
-│ │ └── useCartStore.ts # Shopping cart logic with persist middleware
-│ ├── types/ # Global TypeScript interfaces
-│ │ ├── api.d.ts # Generic API response shapes
-│ │ └── models.ts # Business models (Category, Product, Transaction)
+│ │ └── page.tsx # Entry point for the Home Page
+│ ├── checkout/ # Checkout flow and payment processing
+│ ├── hooks/ # Custom React hooks (e.g., useCart, useForm)
+│ ├── lib/ # Core logic and shared utilities
+│ │ └── api.ts # Central fetchAPI utility with global error handling
+│ ├── services/ # Data Access Layer (API logic separated from UI)
+│ │ ├── bank.service.ts # Bank and payment integration
+│ │ ├── category.service.ts # Category fetching and mapping
+│ │ └── product.service.ts # Product listing and detail logic
+│ ├── store/ # Global state management (Zustand)
+│ │ └── useCartStore.ts # Persistent shopping cart state
+│ ├── types/ # Centralized TypeScript definitions
+│ │ ├── api.d.ts # Generic API response and error shapes
+│ │ └── models.ts # Domain models (Product, Category, Order)
 │ ├── utils/ # Pure helper functions
-│ │ ├── format-price.ts # Currency/Number formatting
-│ │ └── image-helper.ts # getImageUrl logic for Remote Patterns
-│ ├── globals.css # Tailwind CSS v4 directives
-│ └── layout.tsx # Root layout with fonts and metadata
-├── public/ # Static assets served at the root
-│ ├── images/ # Hero images and branding
-│ ├── favicon.ico # Browser icon
-│ └── manifest.json # PWA/Web app metadata
-├── .editorconfig # Standardizes indentation/newlines across VS Code
-├── .gitignore # Excludes node_modules, .next, and .env
-├── .pnpm-store/ # Local pnpm cache for faster Linux builds
-├── mise.toml # Single source of truth for Node & pnpm versions
-├── next.config.ts # RemotePatterns and build-time optimization
-├── package.json # Scripts and dependency list
-├── pnpm-lock.yaml # Deterministic dependency tree
+│ │ ├── format-price.ts # Currency and number formatting
+│ │ └── image-helper.ts # Next.js RemotePattern URL resolution
+│ ├── globals.css # Tailwind CSS v4 directives and variables
+│ └── layout.tsx # Root layout with fonts, metadata, and providers
+├── public/ # Static assets served at the root URL
+│ ├── images/ # Local brand assets and fallback images
+│ ├── favicon.ico # Browser tab icon
+│ └── manifest.json # PWA and web app metadata
+├── .editorconfig # Enforces consistent indentation across IDEs
+├── .gitignore # Excludes dependencies, secrets, and build files
+├── mise.toml # Single source of truth for Node.js and pnpm versions
+├── next.config.ts # Next.js configuration (RemotePatterns, optimization)
+├── package.json # Scripts and project dependency manifest
+├── pnpm-lock.yaml # Deterministic lockfile for dependencies
 └── tailwind.config.ts # Design system and theme customization
 
 ---
