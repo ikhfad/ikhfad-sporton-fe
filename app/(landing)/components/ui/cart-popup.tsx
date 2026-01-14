@@ -6,37 +6,6 @@ import { useRouter } from "next/navigation";
 import { useCartStore } from "@/app/hooks/use-cart-store";
 import { getImageUrl } from "@/app/lib/api";
 
-export const cardList = [
-  {
-    name: "SportsOn Slowlivin",
-    category: "Running",
-    price: 119000,
-    qty: 4,
-    imgUrl: "product-1.png",
-  },
-  {
-    name: "SportsOn Hyperfast Shoes",
-    category: "Running",
-    price: 329000,
-    qty: 1,
-    imgUrl: "product-3.png",
-  },
-  {
-    name: "SportsOn Basketball",
-    category: "Basketball",
-    price: 650000,
-    qty: 4,
-    imgUrl: "product-6.png",
-  },
-  {
-    name: "SportsOn Rocket Tennis v2",
-    category: "Tennis",
-    price: 1200000,
-    qty: 1,
-    imgUrl: "product-2.png",
-  },
-];
-
 const CartPopup = () => {
   const { push } = useRouter();
   const { items, removeItem } = useCartStore();
