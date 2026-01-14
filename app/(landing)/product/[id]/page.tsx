@@ -14,7 +14,7 @@ const ProductDetail = async ({ params }: TPageProps) => {
   console.log(product);
 
   return (
-    <main className="container mx-auto py-40 flex gap-12">
+    <main className="container mx-auto py-40 flex gap-12 h-screen">
       <div className="bg-primary-light aspect-square min-w-140 flex justify-center items-center">
         <Image
           src={getImageUrl(product.imageUrl)}
@@ -33,7 +33,7 @@ const ProductDetail = async ({ params }: TPageProps) => {
         <div className="text-primary text-[32px] font-semibold mb-12">
           {priceFormatter(product.price)}
         </div>
-        <ProductActions stock={product.stock} />
+        <ProductActions product={product} stock={product.stock} />
       </div>
     </main>
   );
