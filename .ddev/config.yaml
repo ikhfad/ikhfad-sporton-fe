@@ -2,7 +2,7 @@ name: ikhfad-sporton-fe
 docroot: ""
 type: generic
 webserver_type: generic
-nodejs_version: "24"
+nodejs_version: "24.13.0"
 corepack_enable: true
 default_container_timeout: "240"
 use_dns_when_possible: true
