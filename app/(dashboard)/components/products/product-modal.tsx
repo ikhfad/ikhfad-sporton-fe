@@ -1,5 +1,7 @@
 import Button from "@/app/(landing)/components/ui/button";
 import Modal from "../ui/modal";
+import ImageUploadPreview from "../ui/image-upload-preview";
+import { useState } from "react";
 
 type TProductModalProps = {
   isOpen: boolean;
@@ -7,11 +9,23 @@ type TProductModalProps = {
 };
 
 const ProductModal = ({ isOpen, onClose }: TProductModalProps) => {
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Add New Product">
       <div className="flex flex-col gap-6">
         <div className="flex gap-7">
-          <div className="w-50"></div>
+          <div className="min-w-50 aspect-square">
+            <ImageUploadPreview
+              value={imagePreview}
+              label="Product Image"
+              onChange={(file) => {
+                setImageFile(file);
+                setImagePreview(URL.createObjectURL(file));
+              }}
+            />
+          </div>
           <div className="flex flex-col gap-4 w-full">
             <div className="input-group-admin">
               <label htmlFor="productName">Product Name</label>
