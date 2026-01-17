@@ -1,0 +1,12 @@
+#!/bin/bash
+# This script is smart enough to handle Linux and Windows (via DDEV's shell)
+
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" || "$OSTYPE" == "win32" ]]; then
+    # Windows logic (PowerShell/CMD safe)
+    echo "Windows detected. Clearing .next cache..."
+    powershell.exe -Command "if (Test-Path .next) { Remove-Item -Recurse -Force .next }"
+else
+    # Linux logic
+    echo "Linux detected. Clearing .next cache..."
+    rm -rf .next
+fi

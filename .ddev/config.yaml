@@ -11,6 +11,15 @@ additional_fqdns: []
 web_environment: []
 disable_upload_dirs_warning: true
 
+hooks:
+  # This runs EVERY TIME before ddev starts
+  pre-start:
+    - exec-host: "ddev clean-next"
+
+  # This runs EVERY TIME you run 'ddev stop'
+  post-stop:
+    - exec-host: "ddev clean-next"
+
 # Map the Next.js port (3000) to the standard DDEV URL
 web_extra_exposed_ports:
   - name: nextjs
@@ -21,7 +30,7 @@ web_extra_exposed_ports:
 # Start the Next.js server automatically in the background
 web_extra_daemons:
   - name: "nextjs"
-    command: "pnpm dev -H 0.0.0.0"
+    command: "sleep 3 && pnpm dev -H 0.0.0.0"
     directory: "/var/www/html"
 
 # Keep this settings as is for now, weird thing happen if this deleted
