@@ -106,10 +106,19 @@ If you prefer to run the project natively on your host machine, ensure you have 
 ikhfad-sporton-fe/
 ├── .ddev/                   # DDEV docker-based local development environment
 │   ├── commands/            # Custom project-specific bash scripts
-│   │   └── web/             # Scripts running in container (e.g., next-clean)
+│   │   └── web/             # Scripts running in container
 │   └── config.yaml          # Main DDEV project configuration
 ├── .next/                   # Next.js build cache (Automatically Git ignored)
 ├── app/                     # Next.js 16 App Router (Core Source Code)
+│   ├── (auth)/              # Authentication Routes
+│   │   └── admin/login/     # Admin Portal Entry
+│   ├── (dashboard)/         # Protected Admin Interface
+│   │   ├── admin/           # Dashboard Sub-routes
+│   │   │   ├── bank-info/   # Manage payment methods
+│   │   │   ├── categories/  # Category management
+│   │   │   ├── products/    # Inventory management
+│   │   │   └── transactions/# Order & payment tracking
+│   │   └── components/      # Dashboard-specific UI (Tables, Modals)
 │   ├── (landing)/           # Marketing/Public pages (Route Group)
 │   │   ├── components/      # UI blocks specific to the landing page
 │   │   │   ├── categories.tsx
