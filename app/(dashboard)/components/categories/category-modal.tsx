@@ -3,23 +3,23 @@ import Modal from "../ui/modal";
 import ImageUploadPreview from "../ui/image-upload-preview";
 import { useState } from "react";
 
-type TCategoriesModalProps = {
+type TCategoryModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const CategoriesModal = ({ isOpen, onClose }: TCategoriesModalProps) => {
+const CategoryModal = ({ isOpen, onClose }: TCategoryModalProps) => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Add New Categories">
+    <Modal isOpen={isOpen} onClose={onClose} title="Add New Category">
       <div className="flex flex-col gap-6">
         <div className="flex gap-7">
           <div className="min-w-50 aspect-square">
             <ImageUploadPreview
               value={imagePreview}
-              label="Categories Image"
+              label="Category Image"
               onChange={(file) => {
                 setImageFile(file);
                 setImagePreview(URL.createObjectURL(file));
@@ -28,7 +28,7 @@ const CategoriesModal = ({ isOpen, onClose }: TCategoriesModalProps) => {
           </div>
           <div className="flex flex-col gap-4 w-full">
             <div className="input-group-admin">
-              <label htmlFor="categoryName">Categories Name</label>
+              <label htmlFor="categoryName">Category Name</label>
               <input
                 type="text"
                 name="categoryName"
@@ -42,15 +42,15 @@ const CategoriesModal = ({ isOpen, onClose }: TCategoriesModalProps) => {
             name="description"
             id="description"
             rows={4}
-            placeholder="Categories Details..."
+            placeholder="Category Details..."
           ></textarea>
         </div>
           </div>
         </div>
-        <Button className="ml-auto mt-3 rounded-lg">Create Categories</Button>
+        <Button className="ml-auto mt-3 rounded-lg">Create Category</Button>
       </div>
     </Modal>
   );
 };
 
-export default CategoriesModal;
+export default CategoryModal;
