@@ -1,11 +1,67 @@
 "use client";
 
-import Button from "@/app/(landing)/components/ui/button";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FiAlertCircle } from "react-icons/fi";
+import { login } from "@/app/services/auth.service";
+import Image from "next/image";
+import Button from "@/app/(landing)/components/ui/button";
 
 const LoginPage = () => {
-  const { push } = useRouter();
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/admin/products");
+    }
+  }, [router])
+
+  const validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  };
+
+  const handleLogin = async () => {
+    setErrorMessage("");
+
+    if (!email.trim() || !password.trim()) {
+      setErrorMessage("Please enter both email and password.");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const data = await login({ email, password });
+      if (data.token) {
+        router.push("/admin/products");
+      }
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setErrorMessage(err.message);
+      } else {
+        setErrorMessage("Something went wrong, please try again later.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleLogin();
+  }
 
   return (
     <main className="bg-[#F7F9FA] w-full min-h-screen flex justify-center items-center">
@@ -18,34 +74,55 @@ const LoginPage = () => {
           className="mb-4 mx-auto"
         />
         <p className="opacity-50 text-sm text-center mb-9">Enter your credentials to access the dashboard</p>
-        <div className="input-group-admin mb-5">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Please type your email"
-            className="rounded-lg!"
-          />
-        </div>
-        <div className="input-group-admin mb-12">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="••••••••••••••••••••"
-            className="rounded-lg!"
-          />
-        </div>
-        <Button
-          className="w-full rounded-lg! mb-8"
-          onClick={() => push("/admin/products")}
-        >
-          Sign In
-        </Button>
+
+        {
+          errorMessage && (
+            <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm mb-6">
+              <FiAlertCircle size={20} />
+              {errorMessage}
+            </div>
+          )
+        }
+
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="input-group-admin mb-5">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Please type your email"
+              value={email}
+              className={`rounded-lg! ${errorMessage.toLowerCase().includes("email") || errorMessage.toLowerCase().includes("both") ? 'border! border-red-500!' : ''}`}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group-admin mb-12">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••••••••••••••"
+              value={password}
+              className={`rounded-lg! ${errorMessage.toLowerCase().includes("password") || errorMessage.toLowerCase().includes("both") ? 'border! border-red-500!' : ''}`}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <Button
+            className="w-full rounded-lg! mb-8"
+            type="submit"
+            disabled={isLoading}
+          >
+            {
+              isLoading ? "Signing In ..." : "Sign In"
+            }
+          </Button>
+        </form>
       </div>
-    </main>
+    </main >
   )
 }
 
