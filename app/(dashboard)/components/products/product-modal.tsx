@@ -207,7 +207,7 @@ const ProductModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={isEditMode ? "Edit New Product" : "Add New Product"}
+      title={isEditMode ? "Edit Product" : "Add New Product"}
     >
       <form onSubmit={handleSubmit}>
         <div className="flex gap-7">
