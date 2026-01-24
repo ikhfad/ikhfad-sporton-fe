@@ -1,20 +1,24 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      router.replace("/admin/login");
+      const encodedPath = encodeURIComponent(pathname);
+      router.replace(`/admin/login?callbackUrl=${encodedPath}`);
     } else {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 0);
     }
-  }, [router]);
+  }, [router, pathname]);
 
   if (isLoading) {
     return (
