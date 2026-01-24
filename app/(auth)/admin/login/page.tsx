@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { login } from "@/app/services/auth.service";
@@ -9,6 +9,8 @@ import Button from "@/app/(landing)/components/ui/button";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin/products";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,12 +21,14 @@ const LoginPage = () => {
     if (token) {
       router.push("/admin/products");
     }
-  }, [router])
+  }, [router]);
 
   const validateEmail = (email: string) => {
     return String(email)
       .toLowerCase()
-      .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      );
   };
 
   const handleLogin = async () => {
@@ -45,7 +49,7 @@ const LoginPage = () => {
     try {
       const data = await login({ email, password });
       if (data.token) {
-        router.push("/admin/products");
+        router.replace(callbackUrl);
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -61,7 +65,7 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleLogin();
-  }
+  };
 
   return (
     <main className="bg-[#F7F9FA] w-full min-h-screen flex justify-center items-center">
@@ -73,16 +77,16 @@ const LoginPage = () => {
           height={51}
           className="mb-4 mx-auto"
         />
-        <p className="opacity-50 text-sm text-center mb-9">Enter your credentials to access the dashboard</p>
+        <p className="opacity-50 text-sm text-center mb-9">
+          Enter your credentials to access the dashboard
+        </p>
 
-        {
-          errorMessage && (
-            <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm mb-6">
-              <FiAlertCircle size={20} />
-              {errorMessage}
-            </div>
-          )
-        }
+        {errorMessage && (
+          <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm mb-6">
+            <FiAlertCircle size={20} />
+            {errorMessage}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} noValidate>
           <div className="input-group-admin mb-5">
@@ -93,7 +97,7 @@ const LoginPage = () => {
               name="email"
               placeholder="Please type your email"
               value={email}
-              className={`rounded-lg! ${errorMessage.toLowerCase().includes("email") || errorMessage.toLowerCase().includes("both") ? 'border! border-red-500!' : ''}`}
+              className={`rounded-lg! ${errorMessage.toLowerCase().includes("email") || errorMessage.toLowerCase().includes("both") ? "border! border-red-500!" : ""}`}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -106,7 +110,7 @@ const LoginPage = () => {
               name="password"
               placeholder="••••••••••••••••••••"
               value={password}
-              className={`rounded-lg! ${errorMessage.toLowerCase().includes("password") || errorMessage.toLowerCase().includes("both") ? 'border! border-red-500!' : ''}`}
+              className={`rounded-lg! ${errorMessage.toLowerCase().includes("password") || errorMessage.toLowerCase().includes("both") ? "border! border-red-500!" : ""}`}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -116,14 +120,12 @@ const LoginPage = () => {
             type="submit"
             disabled={isLoading}
           >
-            {
-              isLoading ? "Signing In ..." : "Sign In"
-            }
+            {isLoading ? "Signing In ..." : "Sign In"}
           </Button>
         </form>
       </div>
-    </main >
-  )
-}
+    </main>
+  );
+};
 
 export default LoginPage;
