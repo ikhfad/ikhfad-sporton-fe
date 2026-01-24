@@ -3,14 +3,14 @@ import React, { useRef } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 
 type TImageUploadProps = {
-  label?: string;
+  alt: string;
   value?: string | null;
   onChange: (file: File) => void;
   className?: string;
 };
 
 const ImageUploadPreview = ({
-  label,
+  alt,
   value,
   onChange,
   className,
@@ -37,7 +37,7 @@ const ImageUploadPreview = ({
         {value ? (
           <Image
             src={value}
-            alt="Preview Product"
+            alt={alt}
             className="w-full h-full object-cover"
             width={200}
             height={200}
