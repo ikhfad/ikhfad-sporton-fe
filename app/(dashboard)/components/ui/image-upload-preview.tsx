@@ -6,14 +6,14 @@ type TImageUploadProps = {
   label?: string;
   value?: string | null;
   onChange: (file: File) => void;
-  classname?: string;
+  className?: string;
 };
 
 const ImageUploadPreview = ({
   label,
   value,
   onChange,
-  classname,
+  className,
 }: TImageUploadProps) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -29,7 +29,7 @@ const ImageUploadPreview = ({
   };
 
   return (
-    <div className={classname}>
+    <div className={className}>
       <div
         className="w-50 h-50 border-2 border-dashed border-primary bg-primary/5 rounded-lg flex flex-col justify-center items-center"
         onClick={handleImageClick}
