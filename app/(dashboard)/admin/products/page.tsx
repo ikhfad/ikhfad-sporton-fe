@@ -64,7 +64,6 @@ const ProductManagement = () => {
   useEffect(() => {
     isMounted.current = true;
     fetchProducts();
-    // 6. Set to false when user leaves the page
 
     return () => {
       isMounted.current = false;
@@ -73,7 +72,6 @@ const ProductManagement = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-
     setSelectedProduct(null);
   };
 
