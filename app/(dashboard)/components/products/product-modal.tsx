@@ -215,7 +215,7 @@ const ProductModal = ({
             <ImageUploadPreview
               value={imagePreview}
               className={`${errors.image ? "border-red-500! ring-2 ring-red-500! bg-red-500/15! rounded-lg" : ""}`}
-              label="Product Image"
+              alt={`${formData.name} Image`}
               onChange={(file) => {
                 setImageFile(file);
                 setImagePreview(URL.createObjectURL(file));
