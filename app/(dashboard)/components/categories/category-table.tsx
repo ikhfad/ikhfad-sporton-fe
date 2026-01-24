@@ -1,40 +1,19 @@
+import { getImageUrl } from "@/app/lib/api";
+import { Category } from "@/app/types";
 import Image from "next/image";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
-const categoryData = [
-  {
-    name: "Badminton",
-    imageUrl: "/images/categories/category-badminton.png",
-    description: "Premium rackets, high-speed shuttlecocks, and court shoes designed for agility and precision."
-  },
-  {
-    name: "Basketball",
-    imageUrl: "/images/categories/category-basketball.png",
-    description: "High-grip basketballs, supportive high-top sneakers, and breathable jerseys for the court."
-  },
-  {
-    name: "Football",
-    imageUrl: "/images/categories/category-football.png",
-    description: "Professional cleats, durable footballs, and protective gear for players of all levels."
-  },
-  {
-    name: "Running",
-    imageUrl: "/images/categories/category-running.png",
-    description: "Advanced footwear and moisture-wicking apparel engineered for maximum comfort and endurance."
-  },
-  {
-    name: "Swimming",
-    imageUrl: "/images/categories/category-swimming.png",
-    description: "Hydrodynamic swimwear, anti-fog goggles, and essential training equipment for the pool or open water."
-  },
-  {
-    name: "Tennis",
-    imageUrl: "/images/categories/category-tennis.png",
-    description: "High-performance rackets, pressurized tennis balls, and specialized footwear for superior court control."
-  }
-]
+type TCategoryTableProps = {
+  categories: Category[];
+  onEdit: (category: Category) => void;
+  onDelete: (id: string) => void;
+};
 
-const CategoryTable = () => {
+const CategoryTable = ({
+  categories,
+  onEdit,
+  onDelete,
+}: TCategoryTableProps) => {
   return (
     <div className="bg-white rounded-xl border-gray-200">
       <table className="w-full text-left border-collapse">
@@ -46,16 +25,16 @@ const CategoryTable = () => {
           </tr>
         </thead>
         <tbody>
-          {categoryData.map((data, index) => (
+          {categories.map((data) => (
             <tr
-              key={index}
+              key={data._id}
               className="border-b border-gray-200 last:border-b-0"
             >
               <td className="px-5 py-4 font-medium">
                 <div className="flex gap-2 items-center">
                   <div className="aspect-square bg-gray-100 rounded-md">
                     <Image
-                      src={data.imageUrl}
+                      src={getImageUrl(data.imageUrl)}
                       width={52}
                       height={52}
                       alt={data.name}
@@ -68,10 +47,16 @@ const CategoryTable = () => {
               <td className="px-5 py-4 font-medium">{data.description}</td>
               <td className="px-5 py-4 font-medium text-gray-600">
                 <div className="flex gap-5 items-center">
-                  <button className="hover:text-primary">
+                  <button
+                    className="hover:text-primary cursor-pointer"
+                    onClick={() => onEdit?.(data)}
+                  >
                     <FiEdit2 size={20} />
                   </button>
-                  <button className="hover:text-primary">
+                  <button
+                    className="hover:text-primary cursor-pointer"
+                    onClick={() => onDelete?.(data._id)}
+                  >
                     <FiTrash2 size={20} />
                   </button>
                 </div>
