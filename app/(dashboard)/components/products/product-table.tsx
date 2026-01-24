@@ -1,53 +1,16 @@
+import { getImageUrl } from "@/app/lib/api";
+import { Product } from "@/app/types";
 import priceFormatter from "@/app/utils/price-formatter";
 import Image from "next/image";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
-const productData = [
-  {
-    name: "SportOn SlowLivin",
-    imageUrl: "/images/products/product-1.png",
-    category: "Running",
-    price: 289000,
-    stock: 123,
-  },
-  {
-    name: "SportOn Rocket Tennis",
-    imageUrl: "/images/products/product-2.png",
-    category: "Tennis",
-    price: 990000,
-    stock: 32,
-  },
-  {
-    name: "SportOn Hyperfast Shoes",
-    imageUrl: "/images/products/product-3.png",
-    category: "Running",
-    price: 600000,
-    stock: 66,
-  },
-  {
-    name: "SportOn HyperBlaze Shoes",
-    imageUrl: "/images/products/product-4.png",
-    category: "Football",
-    price: 860000,
-    stock: 96,
-  },
-  {
-    name: "SportOn AeroFresh",
-    imageUrl: "/images/products/product-5.png",
-    category: "Running",
-    price: 240000,
-    stock: 56,
-  },
-  {
-    name: "SportOn Basketball",
-    imageUrl: "/images/products/product-6.png",
-    category: "Basketball",
-    price: 1200000,
-    stock: 29,
-  },
-];
+type TProductTableProps = {
+  products: Product[];
+  onDelete?: (id: string) => void;
+  onEdit?: (product: Product) => void;
+};
 
-const ProductTable = () => {
+const ProductTable = ({ products, onDelete, onEdit }: TProductTableProps) => {
   return (
     <div className="bg-white rounded-xl border-gray-200">
       <table className="w-full text-left border-collapse">
@@ -61,16 +24,16 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
-          {productData.map((data, index) => (
+          {products.map((data) => (
             <tr
-              key={index}
+              key={data._id}
               className="border-b border-gray-200 last:border-b-0"
             >
               <td className="px-5 py-4 font-medium">
                 <div className="flex gap-2 items-center">
                   <div className="aspect-square bg-gray-100 rounded-md">
                     <Image
-                      src={data.imageUrl}
+                      src={getImageUrl(data.imageUrl)}
                       width={52}
                       height={52}
                       alt={data.name}
@@ -82,7 +45,7 @@ const ProductTable = () => {
               </td>
               <td className="px-5 py-4 font-medium">
                 <div className="rounded-md bg-gray-200 px-2 py-1 w-fit">
-                  {data.category}
+                  {data.category.name}
                 </div>
               </td>
               <td className="px-5 py-4 font-medium">
@@ -91,10 +54,16 @@ const ProductTable = () => {
               <td className="px-5 py-4 font-medium">{data.stock}</td>
               <td className="px-5 py-4 font-medium text-gray-600">
                 <div className="flex gap-5 items-center">
-                  <button className="hover:text-primary">
+                  <button
+                    className="hover:text-primary cursor-pointer"
+                    onClick={() => onEdit?.(data)}
+                  >
                     <FiEdit2 size={20} />
                   </button>
-                  <button className="hover:text-primary">
+                  <button
+                    className="hover:text-primary cursor-pointer"
+                    onClick={() => onDelete?.(data._id)}
+                  >
                     <FiTrash2 size={20} />
                   </button>
                 </div>
