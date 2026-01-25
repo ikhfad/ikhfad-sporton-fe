@@ -29,7 +29,10 @@ export default function RootLayout({
             <main className="flex-1 ml-80 p-14 bg-[#F7F9FA] min-h-screen">
               <div className="max-w-6xl mx-auto">{children}</div>
             </main>
-            <ToastContainer position="bottom-right"></ToastContainer>
+            <ToastContainer
+              position="bottom-right"
+              style={{ zIndex: 99999 }}
+            ></ToastContainer>
           </div>
         </AuthGuard>
       </body>
