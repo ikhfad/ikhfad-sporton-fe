@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { login } from "@/app/services/auth.service";
 import Image from "next/image";
@@ -128,4 +128,12 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default function LoginPageWrapper() {
+  return (
+    <Suspense
+      fallback={<div className="flex items-center text-center">Loading...</div>}
+    >
+      <LoginPage />
+    </Suspense>
+  );
+}
