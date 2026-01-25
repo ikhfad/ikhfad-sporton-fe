@@ -7,19 +7,31 @@ export async function fetchAPI<T>(
     cache: options?.cache || "no-store",
   });
 
+  const contentType = res.headers.get("content-type");
+  const isJson = contentType && contentType.includes("application/json");
+
   if (!res.ok) {
-    let errorMessage = `Failed to fetch data from ${endpoint}`;
-    try {
-      const errorData = await res.json();
-      errorMessage = errorData.message || errorData.error || errorMessage;
-    } catch (e) {
-      console.log(e);
+    let errorMessage = `Error ${res.status}: Failed to fetch data from ${endpoint}`;
+
+    if (isJson) {
+      try {
+        const errorData = await res.json();
+        errorMessage = errorData.message || errorData.error || errorMessage;
+      } catch (e) {
+        console.error("Failed to parse error JSON:", e);
+      }
+    } else {
+      errorMessage = `Server Error: ${res.status} ${res.statusText} at ${endpoint}`;
     }
 
     throw new Error(errorMessage);
   }
 
-  return res.json();
+  if (isJson) {
+    return res.json();
+  }
+
+  return {} as T;
 }
 
 export function getImageUrl(path: string) {
