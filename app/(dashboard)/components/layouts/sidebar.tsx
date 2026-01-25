@@ -52,6 +52,7 @@ const Sidebar = () => {
           alt="Logo Admin"
           width={215}
           height={36}
+          loading="eager"
         />
       </div>
       <div className="flex flex-col gap-2 mt-12 p-5">
