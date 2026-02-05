@@ -21,7 +21,7 @@ export const updateBank = async (
   data: Partial<Bank>,
 ): Promise<Bank> => {
   return await fetchAPI<Bank>(`/banks/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       ...getAuthHeaders(),
       "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const deleteBank = async (id: string): Promise<void> => {
     method: "DELETE",
     headers: {
       ...getAuthHeaders(),
-      "Content-Type":"application/json"
+      "Content-Type": "application/json",
     },
   });
 };

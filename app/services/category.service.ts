@@ -20,7 +20,7 @@ export const updateCategory = async (
   data: FormData,
 ): Promise<Category> => {
   return await fetchAPI<Category>(`/categories/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       ...getAuthHeaders(),
     },
@@ -36,4 +36,3 @@ export const deleteCategory = async (id: string): Promise<void> => {
     },
   });
 };
-

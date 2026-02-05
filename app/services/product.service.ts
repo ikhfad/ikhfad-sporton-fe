@@ -23,8 +23,8 @@ export const updateProduct = async (
   id: string,
   data: FormData,
 ): Promise<Product> => {
-return await fetchAPI<Product>(`/products/${id}`, {
-    method: "PUT",
+  return await fetchAPI<Product>(`/products/${id}`, {
+    method: "PATCH",
     headers: {
       ...getAuthHeaders(),
     },
@@ -37,6 +37,6 @@ export const deleteProduct = async (id: string): Promise<void> => {
     method: "DELETE",
     headers: {
       ...getAuthHeaders(),
-    }
+    },
   });
 };

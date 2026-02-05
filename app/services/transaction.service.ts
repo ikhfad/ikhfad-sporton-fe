@@ -27,7 +27,7 @@ export const updateTransaction = async (
   data: FormData,
 ): Promise<Transaction> => {
   return await fetchAPI<Transaction>(`/transactions/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       ...getAuthHeaders(),
     },
