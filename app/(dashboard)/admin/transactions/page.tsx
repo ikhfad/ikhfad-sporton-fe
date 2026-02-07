@@ -52,7 +52,7 @@ const TransactionManagement = () => {
     try {
       const formData = new FormData();
       formData.append("status", status);
-      await updateTransaction(id, formData);
+      await updateTransaction(id, { status });
       toast.success("Transaction status updated");
       await fetchTransaction();
     } catch (error) {
