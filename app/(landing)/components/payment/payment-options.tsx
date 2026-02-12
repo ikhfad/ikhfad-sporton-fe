@@ -7,24 +7,26 @@ const PaymentOptions = async () => {
 
   return (
     <CardWithHeader title="Payment Options">
-      {banks.map((payment) => (
-        <div
-          className="flex gap-5 p-5 border-b border-gray-100"
-          key={payment._id}
-        >
-          <div className="bg-blue-100 p-4 text-blue-500 flex justify-center items-center">
-            <FiCreditCard size={24} />
+      <div className="h-100 overflow-y-scroll">
+        {banks.map((payment) => (
+          <div
+            className="flex gap-5 p-5 border-b border-gray-100"
+            key={payment._id}
+          >
+            <div className="bg-blue-100 p-4 text-blue-500 flex justify-center items-center">
+              <FiCreditCard size={24} />
+            </div>
+            <div className="self-center">
+              <div className="font-bold">{payment.bankName}</div>
+              <div className="text-sm">{payment.accountNumber}</div>
+              <div className="text-sm opacity-70">{payment.accountName}</div>
+            </div>
+            <div className="ml-auto bg-blue-50 text-gray-800 text-xs h-fit self-center px-2 py-1">
+              Bank Transfer
+            </div>
           </div>
-          <div className="self-center">
-            <div className="font-bold">{payment.bankName}</div>
-            <div className="text-sm">{payment.accountNumber}</div>
-            <div className="text-sm opacity-70">{payment.accountName}</div>
-          </div>
-          <div className="ml-auto bg-blue-50 text-gray-800 text-xs h-fit self-center px-2 py-1">
-            Bank Transfer
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </CardWithHeader>
   );
 };

@@ -22,11 +22,16 @@ const ProductsSection = ({ products }: TProductProps) => {
   };
 
   return (
-    <section id="products-section" className="container mt-32 mx-auto mb-52">
-      <h2 className="font-bold italic text-4xl text-center mb-11">
+    <section
+      id="products-section"
+      className="container mx-auto px-4 sm:px-6 py-16 md:py-20 lg:py-24 xl:py-32"
+    >
+      <h2 className="font-bold italic text-2xl md:text-3xl lg:text-4xl text-center mb-8 md:mb-11">
         <span className="text-primary">OUR </span>PRODUCTS
       </h2>
-      <div className="grid grid-cols-4 gap-5">
+
+      {/* Products Grid - Responsive: 1 col mobile, 2 cols tablet, 3 cols small laptop, 4 cols desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
         {products.map((product) => (
           <Link
             href={`/product/${product._id}`}
@@ -37,23 +42,29 @@ const ProductsSection = ({ products }: TProductProps) => {
               <Image
                 src={getImageUrl(product.imageUrl)}
                 alt={product.name}
-                width={300}
-                height={300}
-                className="aspect-square object-contain"
+                width={200}
+                height={200}
+                className="aspect-square object-contain p-3 md:p-4"
+                loading="lazy"
               />
               <Button
-                className="w-10 h-10 p-2! absolute right-3 top-3 "
+                className="w-10 h-10 p-2! absolute right-2 top-2 md:right-3 md:top-3"
                 variant={"primary"}
                 size={"small"}
                 onClick={(e) => handleAddToCart(e, product)}
+                aria-label={`Add ${product.name} to cart`}
               >
-                <FiPlus size={24} />
+                <FiPlus size={18} className="md:w-6 md:h-6" />
               </Button>
             </div>
-            <h3 className="font-medium text-lg mb-1.5 mt-4">{product.name}</h3>
-            <div className="flex justify-between mb-8">
-              <div className="text-gray-500">{product.category.name}</div>
-              <div className="font-medium text-primary">
+            <h3 className="font-medium text-sm md:text-lg mb-1.5 mt-3 md:mt-4 px-1">
+              {product.name}
+            </h3>
+            <div className="flex justify-between items-center mb-6 md:mb-8 px-1">
+              <div className="text-xs md:text-gray-500 truncate max-w-30 md:max-w-none">
+                {product.category.name}
+              </div>
+              <div className="font-medium text-sm md:text-base text-primary whitespace-nowrap">
                 {priceFormatter(product.price)}
               </div>
             </div>

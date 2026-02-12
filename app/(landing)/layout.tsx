@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 import Header from "./components/layouts/header";
 import Footer from "./components/layouts/footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -25,6 +27,16 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{ zIndex: 99999 }}
+        />
       </body>
     </html>
   );

@@ -17,15 +17,17 @@
 
 * {
   @apply font-poppins;
+  box-sizing: border-box;
 }
 
 html {
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* INPUT GROUP */
 .input-group {
-  @apply mb-5;
+  @apply mb-4 md:mb-5;
 }
 
 .input-group label {
@@ -35,9 +37,9 @@ html {
 .input-group input,
 .input-group textarea {
   @apply px-4 py-2.5 bg-gray-100 w-full focus:border focus:border-gray-400 outline-none text-sm;
+  min-height: 44px;
 }
 
-/* INPUT GROUP ADMIN */
 .input-group-admin label {
   @apply block text-xs mb-1;
 }
@@ -46,4 +48,39 @@ html {
 .input-group-admin select,
 .input-group-admin textarea {
   @apply px-4 py-3 w-full border border-[#DBDBDB] rounded-md focus:border focus:border-gray-600 outline-none text-sm;
+  min-height: 44px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
 }

@@ -13,7 +13,7 @@ const Button = ({
   ...props
 }: TButtonProps) => {
   const baseStyles =
-    "inline-flex gap-2 duration-300 justify-center items-center cursor-pointer hover:scale-105";
+    "inline-flex gap-2 duration-300 justify-center items-center cursor-pointer hover:scale-105 rounded-lg";
 
   const variants = {
     primary: "bg-primary text-white hover:bg-primary/85",
@@ -22,8 +22,8 @@ const Button = ({
   };
 
   const sizes = {
-    normal: "py-4 px-9",
-    small: "py-[10px] px-7",
+    normal: "py-3 px-6 md:py-4 md:px-9",
+    small: "py-2 px-5 md:py-[10px] md:px-7",
   };
 
   return (

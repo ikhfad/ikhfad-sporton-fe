@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCartStore } from "@/app/hooks/use-cart-store";
 import { transactionCheckout } from "@/app/services/transaction.service";
+import { toast } from "react-toastify";
 
 const PaymentSteps = () => {
   const { push } = useRouter();
@@ -17,17 +18,19 @@ const PaymentSteps = () => {
 
   const totalPrice = items.reduce(
     (total, item) => total + item.price * item.qty,
-    0
+    0,
   );
 
   const handleConfirmPayment = async () => {
     if (!file) {
-      alert("Please upload your payment receipt!");
+      toast.error("Please upload your payment receipt!");
       return;
     }
 
     if (!customerInfo) {
-      alert("Customer information is missing, please return to checkout page!");
+      toast.error(
+        "Customer information is missing, please return to checkout page!",
+      );
       push("/checkout");
       return;
     }
@@ -37,20 +40,20 @@ const PaymentSteps = () => {
       formData.append("customerName", customerInfo.customerName);
       formData.append(
         "customerContact",
-        customerInfo.customerContact!.toString()
+        customerInfo.customerContact!.toString(),
       );
       formData.append("customerAddress", customerInfo.customerAddress);
       formData.append("image", file);
       formData.append(
         "purchasedItems",
         JSON.stringify(
-          items.map((item) => ({ productId: item._id, qty: item.qty }))
-        )
+          items.map((item) => ({ productId: item._id, qty: item.qty })),
+        ),
       );
       formData.append("totalPayment", totalPrice!.toString());
 
       const res = await transactionCheckout(formData);
-      alert("Transaction created successfully!");
+      toast.success("Transaction created successfully!");
       reset();
       push(`/order-status/${res._id}`);
     } catch (error) {
