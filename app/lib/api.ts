@@ -4,6 +4,7 @@ export async function fetchAPI<T>(
 ): Promise<T> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
     ...options,
+    credentials: "include",
     cache: options?.cache || "no-store",
   });
 
