@@ -13,26 +13,38 @@ const ProductDetail = async ({ params }: TPageProps) => {
   const product = await getProductDetail(id);
 
   return (
-    <main className="container mx-auto py-40 flex gap-12 h-screen">
-      <div className="bg-primary-light aspect-square min-w-140 flex justify-center items-center">
-        <Image
-          src={getImageUrl(product.imageUrl)}
-          width={550}
-          height={550}
-          alt={product.name}
-          className="aspect-square object-contain w-full"
-        />
-      </div>
-      <div className="w-full py-7">
-        <h1 className="font-bold text-5xl mb-6">{product.name}</h1>
-        <div className="bg-primary-light rounded-full text-primary py-2 px-6 w-fit mb-5">
-          {product.category.name}
+    <main className="container mx-auto mt-5 md:mt-10 xl:mt-15 px-4 sm:px-6 py-16 md:py-20 xl:py-24 min-h-screen">
+      <div className="flex flex-col xl:flex-row gap-6 md:gap-10 xl:gap-12 h-full">
+        {/* Image Section */}
+        <div className="w-full xl:w-1/2">
+          <div className="bg-primary-light aspect-square flex justify-center items-center w-full max-w-sm sm:max-w-md md:max-w-lg xl:max-w-full mx-auto">
+            <Image
+              src={getImageUrl(product.imageUrl)}
+              width={400}
+              height={400}
+              alt={product.name}
+              className="aspect-square object-contain w-full h-full p-4 md:p-6 xl:p-8"
+              priority
+            />
+          </div>
         </div>
-        <p className="leading-loose mb-8">{product.description}</p>
-        <div className="text-primary text-[32px] font-semibold mb-12">
-          {priceFormatter(product.price)}
+
+        {/* Details Section */}
+        <div className="w-full xl:w-1/2 xl:py-4">
+          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl xl:text-5xl mb-4 md:mb-5 xl:mb-6">
+            {product.name}
+          </h1>
+          <div className="bg-primary-light rounded-full text-primary py-1.5 px-4 md:py-2 md:px-6 w-fit mb-4 md:mb-5 text-sm md:text-base">
+            {product.category.name}
+          </div>
+          <p className="leading-relaxed mb-6 text-sm md:text-base text-gray-600">
+            {product.description}
+          </p>
+          <div className="text-primary text-xl sm:text-2xl md:text-[28px] xl:text-[32px] font-semibold mb-6 md:mb-8 xl:mb-12">
+            {priceFormatter(product.price)}
+          </div>
+          <ProductActions product={product} stock={product.stock} />
         </div>
-        <ProductActions product={product} stock={product.stock} />
       </div>
     </main>
   );
