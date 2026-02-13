@@ -185,10 +185,10 @@ const Header = () => {
 
       {/* CART POPUP & BACKDROP - Z-INDEX 70 */}
       {isCartPopupOpen && (
-        <div className="fixed inset-0 pointer-events-none z-70">
+        <div className="fixed inset-0 z-70">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/50 z-0"
+            className="absolute inset-0 bg-black/50 z-10"
             onClick={() => setIsCartPopupOpen(false)}
           />
 
@@ -196,7 +196,7 @@ const Header = () => {
             MOBILE CART WRAPPER
             - lg:hidden: Only visible on mobile.
             - absolute right-0 top-0: Aligns to screen edge.
-            - w-full max-w-[360px]: Ensures it fits the screen.
+            - w-full max-w-90: Ensures it fits the screen.
           */}
           <div className="lg:hidden pointer-events-auto absolute right-0 top-0 w-full max-w-90">
             <CartPopup onClose={() => setIsCartPopupOpen(false)} />
