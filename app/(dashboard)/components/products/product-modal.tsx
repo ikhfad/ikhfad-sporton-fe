@@ -209,9 +209,9 @@ const ProductModal = ({
       onClose={onClose}
       title={isEditMode ? "Edit Product" : "Add New Product"}
     >
-      <form onSubmit={handleSubmit}>
-        <div className="flex gap-7">
-          <div className="min-w-50 aspect-square">
+      <form onSubmit={handleSubmit} className="flex flex-col">
+        <div className="mb-5 md:mb-0 flex flex-col md:flex-row w-full gap-7">
+          <div className="md:min-w-50 md:aspect-square mx-auto">
             <ImageUploadPreview
               value={imagePreview}
               className={`${errors.image ? "border-red-500! ring-2 ring-red-500! bg-red-500/15! rounded-lg" : ""}`}
@@ -366,7 +366,7 @@ const ProductModal = ({
           )}
         </div>
         <Button
-          className="ml-auto mt-3 rounded-lg"
+          className="w-full md:w-auto md:ml-auto md:self-start mt-3 rounded-lg"
           onClick={handleSubmit}
           disabled={isSubmitting}
           type="submit"

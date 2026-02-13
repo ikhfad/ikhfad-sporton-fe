@@ -148,91 +148,87 @@ const CategoryModal = ({
       onClose={onClose}
       title={isEditMode ? "Edit Category" : "Add New Category"}
     >
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-6">
-          <div className="flex gap-7">
-            <div className="min-w-50 aspect-square">
-              <ImageUploadPreview
-                value={imagePreview}
-                className={`${errors.image ? "border-red-500! ring-2 ring-red-500! bg-red-500/15! rounded-lg" : ""}`}
-                alt={`${formData.name} Image`}
-                onChange={(file) => {
-                  setImageFile(file);
-                  setImagePreview(URL.createObjectURL(file));
+      <form onSubmit={handleSubmit} className="flex flex-col">
+        <div className="flex flex-col md:flex-row w-full gap-7">
+          <div className="md:min-w-50 md:aspect-square mx-auto">
+            <ImageUploadPreview
+              value={imagePreview}
+              className={`${errors.image ? "border-red-500! ring-2 ring-red-500! bg-red-500/15! rounded-lg" : ""}`}
+              alt={`${formData.name} Image`}
+              onChange={(file) => {
+                setImageFile(file);
+                setImagePreview(URL.createObjectURL(file));
 
-                  setErrors((prev) => {
-                    const newErrors = { ...prev };
-                    delete newErrors.image;
-                    return newErrors;
-                  });
-                }}
+                setErrors((prev) => {
+                  const newErrors = { ...prev };
+                  delete newErrors.image;
+                  return newErrors;
+                });
+              }}
+            />
+            {errors.image && (
+              <span className="text-xs text-red-500">{errors.image}</span>
+            )}
+          </div>
+          <div className="flex flex-col gap-4 w-full">
+            <div className="input-group-admin">
+              <label
+                htmlFor="name"
+                className={errors.name ? "text-red-500" : ""}
+              >
+                Category Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className={
+                  errors.name ? "border-red-500! ring-1 ring-red-500!" : ""
+                }
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="e.g. Running"
               />
-              {errors.image && (
-                <span className="text-xs text-red-500">{errors.image}</span>
+              {errors.name && (
+                <span className="text-xs text-red-500 mt-1">{errors.name}</span>
               )}
             </div>
-            <div className="flex flex-col gap-4 w-full">
-              <div className="input-group-admin">
-                <label
-                  htmlFor="name"
-                  className={errors.name ? "text-red-500" : ""}
-                >
-                  Category Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  className={
-                    errors.name ? "border-red-500! ring-1 ring-red-500!" : ""
-                  }
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="e.g. Running"
-                />
-                {errors.name && (
-                  <span className="text-xs text-red-500 mt-1">
-                    {errors.name}
-                  </span>
-                )}
-              </div>
-              <div className="input-group-admin">
-                <label
-                  htmlFor="description"
-                  className={errors.description ? "text-red-500" : ""}
-                >
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  id="description"
-                  className={
-                    errors.description
-                      ? "border-red-500! ring-1 ring-red-500!"
-                      : ""
-                  }
-                  rows={4}
-                  value={formData.description}
-                  onChange={handleChange}
-                  placeholder="Category Details..."
-                ></textarea>
-                {errors.description && (
-                  <span className="text-xs text-red-500 mt-1">
-                    {errors.description}
-                  </span>
-                )}
-              </div>
+            <div className="input-group-admin">
+              <label
+                htmlFor="description"
+                className={errors.description ? "text-red-500" : ""}
+              >
+                Description
+              </label>
+              <textarea
+                name="description"
+                id="description"
+                className={
+                  errors.description
+                    ? "border-red-500! ring-1 ring-red-500!"
+                    : ""
+                }
+                rows={4}
+                value={formData.description}
+                onChange={handleChange}
+                placeholder="Category Details..."
+              ></textarea>
+              {errors.description && (
+                <span className="text-xs text-red-500 mt-1">
+                  {errors.description}
+                </span>
+              )}
             </div>
           </div>
-          <Button
-            className="ml-auto mt-3 rounded-lg"
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            type="submit"
-          >
-            {isEditMode ? "Update Category" : "Create Category"}
-          </Button>
         </div>
+        <Button
+          className="w-full md:w-auto md:ml-auto md:self-start mt-3 rounded-lg"
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+          type="submit"
+        >
+          {isEditMode ? "Update Category" : "Create Category"}
+        </Button>
       </form>
     </Modal>
   );

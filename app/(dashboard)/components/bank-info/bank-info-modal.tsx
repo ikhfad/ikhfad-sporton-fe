@@ -133,7 +133,7 @@ const BankInfoModal = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Add New Bank Account">
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col md:gap-6">
           <div className="flex flex-col gap-4 w-full">
             <div className="input-group-admin">
               <label
@@ -216,7 +216,7 @@ const BankInfoModal = ({
             </div>
           </div>
           <Button
-            className="ml-auto mt-3 rounded-lg"
+            className="w-full md:w-auto md:ml-auto md:self-start mt-3 md:m-0 rounded-lg"
             onClick={handleSubmit}
             disabled={isSubmitting}
             type="submit"
