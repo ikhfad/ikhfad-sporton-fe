@@ -24,13 +24,20 @@ const Header = () => {
   const toggleCart = () => setIsCartPopupOpen((prev) => !prev);
 
   useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
     if (isCartPopupOpen || isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+      root.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      body.style.overflow = "unset";
+      root.style.overflow = "unset";
     }
+
     return () => {
-      document.body.style.overflow = "unset";
+      body.style.overflow = "unset";
+      root.style.overflow = "unset";
     };
   }, [isCartPopupOpen, isMobileMenuOpen]);
 

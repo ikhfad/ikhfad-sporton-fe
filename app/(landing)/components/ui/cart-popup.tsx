@@ -25,7 +25,7 @@ const CartPopup = ({ onClose }: CartPopupProps) => {
   );
 
   return (
-    <div className="absolute bg-white right-0 top-17.5 shadow-xl border border-gray-200 w-90 max-w-[calc(100vw-2rem)] shadow-black/10 z-70 lg:rounded-lg rounded-md">
+    <div className="absolute bg-white right-0 top-17.5 shadow-xl border border-gray-200 w-90 max-w-[calc(100vw-2rem)] shadow-black/10 z-70 lg:rounded-lg rounded-md mr-2.5">
       <div className="p-4 border-b border-gray-200 font-bold text-center flex justify-between items-center">
         <span>Shopping Cart</span>
         {onClose && (
