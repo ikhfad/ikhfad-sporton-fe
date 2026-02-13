@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-dark-alternative text-white">
       <div className="container mx-auto px-4 sm:px-6 py-10 md:py-14 lg:py-16">
-        <div className="flex flex-col lg:flex-row lg:justify-around gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="flex flex-col gap-5">
             <Image

@@ -25,7 +25,7 @@ const CartPopup = ({ onClose }: CartPopupProps) => {
   );
 
   return (
-    <div className="absolute bg-white right-0 top-17.5 shadow-xl border border-gray-200 w-90 max-w-[calc(100vw-2rem)] shadow-black/10 z-70 lg:rounded-lg rounded-md mr-2.5">
+    <div className="absolute bg-white right-0 top-17.5 shadow-xl border border-gray-200 w-90 max-w-[calc(100vw-1rem)] md:max-w-90 shadow-black/10 z-70 lg:rounded-lg rounded-md mr-2.5">
       <div className="p-4 border-b border-gray-200 font-bold text-center flex justify-between items-center">
         <span>Shopping Cart</span>
         {onClose && (
@@ -66,11 +66,11 @@ const CartPopup = ({ onClose }: CartPopupProps) => {
               <Button
                 variant="ghost"
                 size="small"
-                className="w-7 h-7 p-0! self-center shrink-0"
+                className="w-11 h-11 p-2! self-center shrink-0 min-h-11"
                 onClick={() => removeItem(item._id)}
                 aria-label={`Remove ${item.name} from cart`}
               >
-                <FiTrash2 size={16} />
+                <FiTrash2 size={18} />
               </Button>
             </div>
           ))

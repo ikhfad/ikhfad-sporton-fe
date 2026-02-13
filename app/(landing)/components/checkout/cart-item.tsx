@@ -49,11 +49,11 @@ const CartItem = ({ handlePayment }: TCartItems) => {
               <Button
                 size="small"
                 variant="ghost"
-                className="w-8 h-8 p-0! self-center shrink-0"
+                className="w-11 h-11 p-2! self-center shrink-0 min-h-11"
                 onClick={() => removeItem(item._id)}
                 aria-label={`Remove ${item.name} from cart`}
               >
-                <FiTrash2 size={14} />
+                <FiTrash2 size={18} />
               </Button>
             </div>
           ))}

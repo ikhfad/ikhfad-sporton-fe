@@ -47,15 +47,14 @@ const OrderInformation = ({
           </label>
           <input
             type="text"
+            autoComplete="name"
             placeholder="Type your full name"
             id="customerName"
             name="customerName"
             value={formData.customerName}
             onChange={handleInputChange}
             className={
-              errors.customerName
-                ? "border-red-500! ring-1 ring-red-500!"
-                : ""
+              errors.customerName ? "border-red-500! ring-1 ring-red-500!" : ""
             }
           />
         </div>
@@ -74,6 +73,8 @@ const OrderInformation = ({
           </label>
           <input
             type="tel"
+            inputMode="tel"
+            autoComplete="tel"
             placeholder="Type your WhatsApp number"
             id="customerContact"
             name="customerContact"
@@ -105,6 +106,7 @@ const OrderInformation = ({
             placeholder="Type your shipping address"
             id="customerAddress"
             name="customerAddress"
+            autoComplete="street-address"
             rows={5}
             value={formData.customerAddress}
             onChange={handleInputChange}

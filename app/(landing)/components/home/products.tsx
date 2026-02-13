@@ -48,7 +48,7 @@ const ProductsSection = ({ products }: TProductProps) => {
                 loading="lazy"
               />
               <Button
-                className="w-10 h-10 p-2! absolute right-2 top-2 md:right-3 md:top-3"
+                className="w-11 h-11 p-2! absolute right-2 top-2 md:right-3 md:top-3 min-h-11"
                 variant={"primary"}
                 size={"small"}
                 onClick={(e) => handleAddToCart(e, product)}
