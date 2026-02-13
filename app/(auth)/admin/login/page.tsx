@@ -131,7 +131,20 @@ const LoginPage = () => {
 export default function LoginPageWrapper() {
   return (
     <Suspense
-      fallback={<div className="flex items-center text-center">Loading...</div>}
+      fallback={
+        <main className="bg-[#F7F9FA] w-full min-h-screen flex justify-center items-center p-4">
+          <div className="max-w-136 w-full bg-white rounded-xl border-t-4 border-primary py-12 px-6 sm:px-12 md:px-18">
+            <div className="flex flex-col items-center justify-center">
+              <div className="relative mb-4">
+                <div className="w-16 h-16 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
+              </div>
+              <p className="text-gray-500 text-sm font-medium animate-pulse">
+                Loading...
+              </p>
+            </div>
+          </div>
+        </main>
+      }
     >
       <LoginPage />
     </Suspense>
