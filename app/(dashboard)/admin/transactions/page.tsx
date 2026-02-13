@@ -74,8 +74,10 @@ const TransactionManagement = () => {
     <div>
       <div className="flex justify-between items-center mb-10">
         <div>
-          <h1 className="font-bold text-2xl">Transaction Management</h1>
-          <p className="opacity-50">
+          <h1 className="font-bold text-xl md:text-2xl">
+            Transaction Management
+          </h1>
+          <p className="opacity-50 text-sm md:text-base">
             Verify incoming payments and manage orders.
           </p>
         </div>

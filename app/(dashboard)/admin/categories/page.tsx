@@ -82,14 +82,20 @@ const CategoryManagement = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-10">
         <div>
-          <h1 className="font-bold text-2xl">Category Management</h1>
-          <p className="opacity-50">Organize your products into categories.</p>
+          <h1 className="font-bold text-xl md:text-2xl">Category Management</h1>
+          <p className="opacity-50 text-sm md:text-base">
+            Organize your products into categories.
+          </p>
         </div>
-        <Button className="rounded-lg" onClick={() => setIsModalOpen(true)}>
-          <FiPlus size={24} />
-          Add Category
+        <Button
+          className="rounded-lg w-full sm:w-auto"
+          onClick={() => setIsModalOpen(true)}
+        >
+          <FiPlus size={18} className="md:w-6 md:h-6" />
+          <span className="hidden sm:inline">Add Category</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
       <CategoryTable

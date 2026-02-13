@@ -26,8 +26,8 @@ export default function RootLayout({
         <AuthGuard>
           <div className="flex min-h-screen bg-white">
             <Sidebar />
-            <main className="flex-1 ml-80 p-14 bg-[#F7F9FA] min-h-screen">
-              <div className="max-w-6xl mx-auto">{children}</div>
+            <main className="flex-1 lg:ml-72 p-4 md:p-6 md:pt-20 lg:p-8 xl:p-14 bg-[#F7F9FA] min-h-screen pt-20 lg:pt-14">
+              <div className="max-w-7xl mx-auto">{children}</div>
             </main>
             <ToastContainer
               position="bottom-right"

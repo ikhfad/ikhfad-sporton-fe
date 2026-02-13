@@ -264,6 +264,7 @@ const ProductModal = ({
                 </label>
                 <input
                   type="text"
+                  inputMode="numeric"
                   name="price"
                   id="price"
                   className={
@@ -288,6 +289,7 @@ const ProductModal = ({
                 </label>
                 <input
                   type="text"
+                  inputMode="numeric"
                   name="stock"
                   id="stock"
                   className={
