@@ -13,7 +13,7 @@ const HeroSection = () => {
               width={400}
               height={400}
               alt=""
-              className="grayscale hidden lg:block absolute left-0 lg:-left-4 xl:-left-8 top-0 lg:-top-8 xl:-top-12 w-36 md:w-44 lg:w-75 xl:w-105 h-auto rounded-full object-cover z-[-1]"
+              className="grayscale opacity-40 xl:opacity-30 hidden lg:block absolute left-0 lg:-left-4 xl:-left-8 top-0 lg:-top-8 xl:-top-12 w-36 md:w-44 lg:w-75 xl:w-105 h-auto rounded-full object-cover z-[-1]"
               aria-hidden="true"
               loading="eager"
             />
