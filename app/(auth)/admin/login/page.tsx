@@ -69,7 +69,7 @@ const LoginPage = () => {
 
   return (
     <main className="bg-[#F7F9FA] w-full min-h-screen flex justify-center items-center">
-      <div className="max-w-136 w-full bg-white rounded-xl border-t-4 border-primary py-12 px-18">
+      <div className="w-[90%] md:max-w-136 bg-white rounded-xl border-t-4 border-primary py-5 px-10 md:py-12 md:px-18">
         <Image
           src="/images/logo-admin.svg"
           alt="Logo Admin"
@@ -102,7 +102,7 @@ const LoginPage = () => {
               required
             />
           </div>
-          <div className="input-group-admin mb-12">
+          <div className="input-group-admin mb-6 md:mb-12">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -116,7 +116,7 @@ const LoginPage = () => {
             />
           </div>
           <Button
-            className="w-full rounded-lg! mb-8"
+            className="w-full rounded-lg! mb-0 md:mb-8"
             type="submit"
             disabled={isLoading}
           >
