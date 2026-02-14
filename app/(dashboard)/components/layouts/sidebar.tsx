@@ -13,7 +13,7 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -49,6 +49,23 @@ const Sidebar = () => {
   };
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (isMobileMenuOpen) {
+      body.style.overflow = "hidden";
+      root.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "";
+      root.style.overflow = "";
+    }
+
+    return () => {
+      body.style.overflow = "";
+      root.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>

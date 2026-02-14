@@ -18,11 +18,27 @@
 * {
   @apply font-poppins;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   overflow-x: hidden;
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* INPUT GROUP */
@@ -30,8 +46,19 @@ html {
   @apply mb-4 md:mb-5;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #f3f4f6 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .input-group label {
   @apply block text-xs mb-1;
+}
+
+.input-group textarea {
+  resize: vertical;
 }
 
 .input-group input,

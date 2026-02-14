@@ -2,7 +2,7 @@ import Modal from "../ui/modal";
 import Image from "next/image";
 import priceFormatter from "@/app/utils/price-formatter";
 import Button from "@/app/(landing)/components/ui/button";
-import { FiX, FiCheck, FiImage, FiZoomIn } from "react-icons/fi";
+import { FiX, FiCheck, FiImage } from "react-icons/fi";
 import { Transaction } from "@/app/types";
 import { useState, useEffect } from "react";
 import { getImageUrl } from "@/app/lib/api";
@@ -21,7 +21,6 @@ const TransactionModal = ({
   onStatusChange,
 }: TTransactionModalProps) => {
   const [isUpdating, setIsUpdating] = useState(false);
-  const [showLightbox, setShowLightbox] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
@@ -58,20 +57,17 @@ const TransactionModal = ({
                 </div>
               ) : (
                 <div
-                  className="relative cursor-pointer group w-24 max-h-24"
-                  onClick={() => !imageError && setShowLightbox(true)}
+                  className="relative group w-full"
+                  onClick={() => !imageError}
                 >
                   <Image
                     src={getImageUrl(transaction.paymentProof)}
                     alt="Payment Proof Image"
                     width={200}
                     height={400}
-                    className="w-full h-auto max-h-24 object-contain rounded-md"
+                    className="w-full h-full object-contain rounded-md"
                     onError={() => setImageError(true)}
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <FiZoomIn className="text-white text-xl drop-shadow-lg" />
-                  </div>
                 </div>
               )
             ) : (
@@ -105,9 +101,7 @@ const TransactionModal = ({
                 <div className="text-right">{transaction.customerContact}</div>
               </div>
               <div className="flex justify-between font-medium gap-10">
-                <div className="opacity-50 whitespace-nowrap">
-                  Shipping Address
-                </div>
+                <div className="opacity-50">Shipping Address</div>
                 <div className="text-right">{transaction.customerAddress}</div>
               </div>
             </div>
@@ -149,13 +143,13 @@ const TransactionModal = ({
           </div>
         </div>
 
-        <div className="flex justify-end gap-5 mt-12">
+        <div className="flex justify-end gap-5 mt-5 md:mt-8">
           {isUpdating ? (
             <div className="px-7 py-2.5 text-center w-full bg-gray-300 rounded-md">
               Updating...
             </div>
           ) : (
-            <>
+            <div className="flex flex-col md:flex-row w-full md:w-auto gap-4">
               <Button
                 className="text-primary! bg-primary-light! rounded-md w-full md:w-auto"
                 size="small"
@@ -174,33 +168,10 @@ const TransactionModal = ({
                 <FiCheck size={20} />
                 Approve
               </Button>
-            </>
+            </div>
           )}
         </div>
       </div>
-
-      {showLightbox && !imageError && transaction?.paymentProof && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
-          onClick={() => setShowLightbox(false)}
-        >
-          <div className="relative max-w-4xl max-h-[90vh] p-4">
-            <Image
-              src={getImageUrl(transaction.paymentProof)}
-              alt="Payment Proof Full"
-              width={800}
-              height={1200}
-              className="w-full h-auto object-contain rounded-lg"
-            />
-            <button
-              className="absolute top-2 right-2 text-white bg-black/50 rounded-full p-2"
-              onClick={() => setShowLightbox(false)}
-            >
-              <FiX size={24} />
-            </button>
-          </div>
-        </div>
-      )}
     </Modal>
   );
 };

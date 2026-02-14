@@ -31,13 +31,13 @@ const Header = () => {
       body.style.overflow = "hidden";
       root.style.overflow = "hidden";
     } else {
-      body.style.overflow = "unset";
-      root.style.overflow = "unset";
+      body.style.overflow = "";
+      root.style.overflow = "";
     }
 
     return () => {
-      body.style.overflow = "unset";
-      root.style.overflow = "unset";
+      body.style.overflow = "";
+      root.style.overflow = "";
     };
   }, [isCartPopupOpen, isMobileMenuOpen]);
 
