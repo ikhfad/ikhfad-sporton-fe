@@ -50,14 +50,21 @@ const TransactionManagement = () => {
     status: "paid" | "rejected",
   ) => {
     try {
-      const formData = new FormData();
-      formData.append("status", status);
       await updateTransaction(id, { status });
       toast.success("Transaction status updated");
       await fetchTransaction();
     } catch (error) {
       console.error("Failed to update transaction status", error);
-      toast.error("Failed to update transaction status");
+
+      if (error instanceof Error) {
+        if (error.message === "Failed to fetch") {
+          toast.error("Network error – please check your connection");
+        } else {
+          toast.error(`Failed to update: ${error.message}`);
+        }
+      } else {
+        toast.error(`Failed to update: ${String(error)}`);
+      }
     }
   };
 
