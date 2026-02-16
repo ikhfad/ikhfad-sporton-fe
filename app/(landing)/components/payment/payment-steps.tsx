@@ -3,7 +3,7 @@
 import CardWithHeader from "../ui/card-with-header";
 import priceFormatter from "@/app/utils/price-formatter";
 import Button from "../ui/button";
-import { FiCheckCircle } from "react-icons/fi";
+import { FiAlertCircle, FiCheckCircle } from "react-icons/fi";
 import FileUpload from "../ui/file-upload";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -15,6 +15,7 @@ const PaymentSteps = () => {
   const { push } = useRouter();
   const { items, customerInfo, reset } = useCartStore();
   const [file, setFile] = useState<File | null>();
+  const isCartEmpty = items.length === 0;
 
   const totalPrice = items.reduce(
     (total, item) => total + item.price * item.qty,
@@ -22,6 +23,11 @@ const PaymentSteps = () => {
   );
 
   const handleConfirmPayment = async () => {
+    if (isCartEmpty) {
+      toast.error("Your cart is empty!");
+      return;
+    }
+
     if (!file) {
       toast.error("Please upload your payment receipt!");
       return;
@@ -81,7 +87,18 @@ const PaymentSteps = () => {
             your transaction.
           </li>
         </ol>
-        <FileUpload onFileSelect={setFile} />
+        {isCartEmpty ? (
+          <div className="flex flex-col justify-center items-center w-full py-6 border border-dashed border-primary bg-primary-light">
+            <div className="text-center my-5">
+              <FiAlertCircle className="text-primary mx-auto mb-1" />
+              <p className="text-xs">
+                Please add items to your cart to proceed with payment
+              </p>
+            </div>
+          </div>
+        ) : (
+          <FileUpload onFileSelect={setFile} />
+        )}
       </div>
       <div className="border-t border-gray-200 p-4">
         <div className="flex justify-between font-semibold">
@@ -90,14 +107,24 @@ const PaymentSteps = () => {
             {priceFormatter(totalPrice)}
           </div>
         </div>
-        <Button
-          variant="dark"
-          className="w-full mt-4"
-          onClick={handleConfirmPayment}
-        >
-          <FiCheckCircle />
-          Upload Receipt & Confirm
-        </Button>
+        {isCartEmpty ? (
+          <button
+            className="inline-flex py-3 px-6 md:py-4 md:px-9 mt-4 w-full gap-2 justify-center items-center cursor-not-allowed rounded-lg bg-dark opacity-50 text-white"
+            disabled
+          >
+            <FiCheckCircle />
+            Upload Receipt & Confirm
+          </button>
+        ) : (
+          <Button
+            variant="dark"
+            className="w-full mt-4"
+            onClick={handleConfirmPayment}
+          >
+            <FiCheckCircle />
+            Upload Receipt & Confirm
+          </Button>
+        )}
       </div>
     </CardWithHeader>
   );
