@@ -12,6 +12,7 @@ import {
   FiLogOut,
   FiMenu,
   FiX,
+  FiHome,
 } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
@@ -21,6 +22,11 @@ const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
+    {
+      name: "Dashboard",
+      icon: FiHome,
+      link: "/admin",
+    },
     {
       name: "Products",
       icon: FiBox,

@@ -21,7 +21,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className={`${poppins.variable} antialiased`}>
         <AuthGuard>
           <div className="flex min-h-screen bg-white">

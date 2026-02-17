@@ -8,6 +8,26 @@ const priceFormatter = (price: number) => {
   return newFormat;
 };
 
+export const formatDashboardCurrencyString = (value: string): string => {
+  const numValue = parseFloat(value);
+  if (isNaN(numValue)) return value;
+  if (numValue >= 1000000) {
+    return `Rp ${(numValue / 1000000).toFixed(1)} JT`;
+  } else if (numValue >= 1000) {
+    return `Rp ${(numValue / 1000).toFixed(0)}K`;
+  }
+  return `Rp ${numValue}`;
+};
+
+export const formatDashboardCurrencyNumber = (value: number): string => {
+  if (value >= 1000000) {
+    return `Rp ${(value / 1000000).toFixed(1)} JT`;
+  } else if (value >= 1000) {
+    return `Rp ${(value / 1000).toFixed(0)}K`;
+  }
+  return `Rp ${value}`;
+};
+
 export const toIDRDisplay = (val: number | string) => {
   if (!val) return "";
   const numeric =
