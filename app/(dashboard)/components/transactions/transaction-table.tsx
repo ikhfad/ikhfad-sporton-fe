@@ -27,7 +27,7 @@ const TransactionTable = ({
   return (
     <div className="bg-white rounded-xl border-gray-200">
       {/* Desktop Table View */}
-      <table className="w-full text-left border-collapse hidden lg:table">
+      <table className="w-full text-left border-collapse hidden xl:table">
         <thead>
           <tr className="border-b border-gray-200">
             <th className="px-4 py-4 font-semibold">Date</th>
@@ -84,7 +84,7 @@ const TransactionTable = ({
       </table>
 
       {/* Mobile Card View */}
-      <div className="lg:hidden">
+      <div className="xl:hidden">
         {transaction.map((data) => (
           <div
             key={data._id}
@@ -119,7 +119,7 @@ const TransactionTable = ({
                 {priceFormatter(parseInt(data.totalPayment))}
               </div>
               <button
-                className="mt-2 px-3 py-1.5 w-fit flex gap-2 items-center hover:bg-gray-200 rounded-md cursor-pointer"
+                className="mt-2 px-3 py-1.5 w-fit flex gap-2 items-center ml-auto hover:bg-gray-200 rounded-md cursor-pointer"
                 onClick={() => onViewDetails(data)}
               >
                 <FiEye size={16} />
