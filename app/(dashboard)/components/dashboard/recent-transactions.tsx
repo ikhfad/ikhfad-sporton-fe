@@ -89,7 +89,7 @@ const RecentTransactions = ({ transactions }: RecentTransactionsProps) => {
             key={transaction._id}
             className="flex max-[400px]:flex-col flex-row items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
           >
-            <div className="flex max-[400px]:mb-2 mb-0 items-center gap-3 min-w-0 max-[400px]:w-full shrink-0">
+            <div className="flex max-[400px]:mb-2 mb-0 items-center gap-3 min-w-0 max-[400px]:w-full flex-1">
               {/* Customer Initial */}
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                 <span className="text-sm font-semibold text-primary">
