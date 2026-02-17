@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { isTokenExpired } from "@/app/utils/jwt";
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -10,9 +11,15 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) {
+
+    if (!token || isTokenExpired(token)) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
       const encodedPath = encodeURIComponent(pathname);
-      router.replace(`/admin/login?callbackUrl=${encodedPath}`);
+      router.replace(
+        `/admin/login?callbackUrl=${encodedPath}&sessionExpired=true`,
+      );
     } else {
       setTimeout(() => {
         setIsLoading(false);

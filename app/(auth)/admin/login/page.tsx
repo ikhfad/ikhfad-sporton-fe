@@ -6,22 +6,28 @@ import { FiAlertCircle } from "react-icons/fi";
 import { login } from "@/app/services/auth.service";
 import Image from "next/image";
 import Button from "@/app/(landing)/components/ui/button";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin/products";
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const sessionExpired = searchParams.get("sessionExpired");
 
   useEffect(() => {
+    if (sessionExpired === "true") {
+      toast.error("Your session has expired. Please log in again.");
+    }
+
     const token = localStorage.getItem("token");
     if (token) {
-      router.push("/admin/products");
+      router.push("/admin");
     }
-  }, [router]);
+  }, [router, sessionExpired]);
 
   const validateEmail = (email: string) => {
     return String(email)
@@ -76,6 +82,7 @@ const LoginPage = () => {
           width={384}
           height={51}
           className="mb-4 mx-auto"
+          loading="eager"
         />
         <p className="opacity-50 text-sm text-center mb-9">
           Enter your credentials to access the dashboard

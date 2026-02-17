@@ -8,6 +8,17 @@ export async function fetchAPI<T>(
     cache: options?.cache || "no-store",
   });
 
+  if (res.status === 401) {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      const currentPath = window.location.pathname;
+      const encodedPath = encodeURIComponent(currentPath);
+      window.location.href = `/admin/login?callbackUrl=${encodedPath}&sessionExpired=true`;
+    }
+    throw new Error("Session expired. Please log in again.");
+  }
+
   const contentType = res.headers.get("content-type");
   const isJson = contentType && contentType.includes("application/json");
 
