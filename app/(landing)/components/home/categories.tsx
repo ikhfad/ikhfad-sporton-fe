@@ -1,8 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
 import { Category } from "@/app/types";
-import { getImageUrl } from "@/app/lib/api";
+import CategoryCard from "../ui/category-card";
 
 type TCategoriesProps = {
   categories: Category[];
@@ -28,24 +27,7 @@ const CategoriesSection = ({ categories }: TCategoriesProps) => {
       {/* Categories Grid - Responsive: 2 cols mobile, 3 cols tablet, 4 cols small laptop, 6 cols desktop */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4 lg:gap-6">
         {categories.map((category) => (
-          <div
-            className="rounded-lg bg-linear-to-r from-[#F1F1F1] to-[#F7F7F7] w-full aspect-square flex justify-center items-center p-3 md:p-4"
-            key={category._id}
-          >
-            <div className="self-center text-center">
-              <Image
-                src={getImageUrl(category.imageUrl)}
-                width={60}
-                height={60}
-                alt={category.name}
-                className="mb-2 md:mb-2.5 w-12.5 h-12.5 md:w-17.5 md:h-17.5 lg:w-21.5 lg:h-21.5 object-contain"
-                loading="lazy"
-              />
-              <div className="text-primary font-medium text-xs md:text-sm lg:text-base">
-                {category.name}
-              </div>
-            </div>
-          </div>
+          <CategoryCard key={category._id} category={category} />
         ))}
       </div>
     </section>

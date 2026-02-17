@@ -28,25 +28,25 @@ const Footer = () => {
             <div className="flex flex-col gap-4">
               <h3 className="font-semibold text-sm md:text-base">Company</h3>
               <Link
-                href="#"
+                href="/"
                 className="text-sm text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 Home
               </Link>
               <Link
-                href="#"
+                href="/category"
                 className="text-sm text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 Categories
               </Link>
               <Link
-                href="#"
+                href="/products"
                 className="text-sm text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 Products
               </Link>
               <Link
-                href="#"
+                href="/about"
                 className="text-sm text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 About Us
@@ -93,13 +93,13 @@ const Footer = () => {
 
             <div className="flex gap-6 text-xs md:text-sm">
               <Link
-                href="#"
+                href="/privacy-policy"
                 className="text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href="/terms-conditions"
                 className="text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 Terms & Conditions

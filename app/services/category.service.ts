@@ -36,3 +36,7 @@ export const deleteCategory = async (id: string): Promise<void> => {
     },
   });
 };
+
+export const getCategoryById = async (id: string): Promise<Category> => {
+  return await fetchAPI<Category>(`/categories/${id}`);
+};

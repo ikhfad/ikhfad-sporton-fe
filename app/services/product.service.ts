@@ -40,3 +40,9 @@ export const deleteProduct = async (id: string): Promise<void> => {
     },
   });
 };
+
+export const getProductsByCategory = async (
+  categoryId: string,
+): Promise<Product[]> => {
+  return await fetchAPI<Product[]>(`/products/category/${categoryId}`);
+};

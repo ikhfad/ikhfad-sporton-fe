@@ -5,7 +5,7 @@ import Button from "../ui/button";
 const HeroSection = () => {
   return (
     <section id="hero-section" className="relative overflow-hidden">
-      <div className="mx-auto px-4 sm:px-6 min-h-screen flex items-center pt-20 md:pt-24 relative container">
+      <div className="mx-auto px-4 sm:px-6 md:min-h-screen flex items-center pt-20 md:pt-24 relative container">
         <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-10 w-full py-8 md:py-12">
           <div className="w-full lg:w-1/2 order-2 lg:order-1 relative">
             <Image

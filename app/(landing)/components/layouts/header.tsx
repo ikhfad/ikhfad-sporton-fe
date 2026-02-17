@@ -16,8 +16,9 @@ const Header = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "#category-section", label: "Category" },
-    { href: "#products-section", label: "Explore Product" },
+    { href: "/category", label: "Category" },
+    { href: "/products", label: "Explore Product" },
+    { href: "/about", label: "About Us" },
   ];
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
