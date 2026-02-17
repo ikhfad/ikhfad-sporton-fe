@@ -12,10 +12,14 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (!token || isTokenExpired(token)) {
+    if (!token) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-
+      const encodedPath = encodeURIComponent(pathname);
+      router.replace(`/admin/login?callbackUrl=${encodedPath}`);
+    } else if (isTokenExpired(token)) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       const encodedPath = encodeURIComponent(pathname);
       router.replace(
         `/admin/login?callbackUrl=${encodedPath}&sessionExpired=true`,
