@@ -14,7 +14,7 @@ const ProductTable = ({ products, onDelete, onEdit }: TProductTableProps) => {
   return (
     <div className="bg-white rounded-xl border-gray-200">
       {/* Desktop Table View */}
-      <table className="w-full text-left border-collapse hidden lg:table">
+      <table className="w-full text-left border-collapse hidden xl:table">
         <thead>
           <tr className="border-b border-gray-200">
             <th className="px-4 py-4 font-semibold">Product</th>
@@ -78,7 +78,7 @@ const ProductTable = ({ products, onDelete, onEdit }: TProductTableProps) => {
       </table>
 
       {/* Mobile Card View */}
-      <div className="lg:hidden">
+      <div className="xl:hidden">
         {products.map((data) => (
           <div
             key={data._id}
@@ -96,7 +96,9 @@ const ProductTable = ({ products, onDelete, onEdit }: TProductTableProps) => {
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-medium text-sm md:text-base truncate">{data.name}</h3>
+                <h3 className="font-medium text-sm md:text-base truncate">
+                  {data.name}
+                </h3>
                 <div className="flex flex-wrap gap-2 mt-2">
                   <span className="rounded-md bg-gray-200 px-2 py-1 text-xs">
                     {data.category.name}
