@@ -58,7 +58,9 @@ const RecentTransactions = ({ transactions }: RecentTransactionsProps) => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <FiClock className="text-blue-500" />
-            <h2 className="font-semibold text-lg">Recent Transactions</h2>
+            <h2 className="font-semibold text-base sm:text-lg">
+              Recent Transactions
+            </h2>
           </div>
         </div>
         <div className="text-center py-8">
@@ -73,7 +75,9 @@ const RecentTransactions = ({ transactions }: RecentTransactionsProps) => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <FiClock className="text-blue-500" />
-          <h2 className="font-semibold text-lg">Recent Transactions</h2>
+          <h2 className="font-semibold text-base sm:text-lg">
+            Recent Transactions
+          </h2>
         </div>
         <Link
           href="/admin/transactions"

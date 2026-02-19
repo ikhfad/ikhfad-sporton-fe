@@ -20,7 +20,9 @@ const StatsCard = ({
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-gray-500 mb-1">{title}</p>
-          <p className="text-xl md:text-2xl font-bold text-dark">{value}</p>
+          <p className="text-lg md:text-xl 2xl:text-2xl font-bold text-dark">
+            {value}
+          </p>
         </div>
         <div className={`p-3 rounded-lg ${bgColor}`}>
           <Icon className={`w-5 h-5 md:w-6 md:h-6 ${iconColor}`} />

@@ -21,7 +21,9 @@ const LowStockAlert = ({ products, threshold = 10 }: LowStockAlertProps) => {
     return (
       <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-semibold text-lg">Low Stock Alerts</h2>
+          <h2 className="font-semibold text-base sm:text-lg">
+            Low Stock Alerts
+          </h2>
         </div>
         <div className="text-center py-8">
           <p className="text-gray-500">All products are well stocked!</p>
@@ -41,9 +43,11 @@ const LowStockAlert = ({ products, threshold = 10 }: LowStockAlertProps) => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <FiAlertTriangle className="text-yellow-500" />
-          <h2 className="font-semibold text-lg">Low Stock Alerts</h2>
+          <h2 className="font-semibold text-base sm:text-lg">
+            Low Stock Alerts
+          </h2>
         </div>
-        <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">
+        <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium text-center">
           {lowStockProducts.length} items
         </span>
       </div>
